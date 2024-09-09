@@ -22,7 +22,7 @@ const init = {
 };
 
 const App = () => {
-  const [state, setState] = useState({ ...init });
+  const [state, setState] = useState({ deepClone(init) });
 
   const handleChange = (event) => {
     const oldState = deepClone(state);
