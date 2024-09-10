@@ -63,6 +63,7 @@ const useForm = ({ init, validate }) => {
       touched: mapStateToKeys(state, "touched"),
       focused: mapStateToKeys(state, "touched"),
     });
+    
   };
 
   const clear = () => {

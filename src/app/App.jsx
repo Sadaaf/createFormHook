@@ -1,5 +1,6 @@
 import useForm from "../hooks/useForm";
 import InputGroup from "../components/shared/forms/InputGroup";
+import Button from "../components/ui/buttons/Button";
 
 const init = {
   lastName: "",
@@ -37,11 +38,19 @@ const App = () => {
     init,
     validate,
   });
+
+  const cb = ({ hasError, values, errors }) => {
+    hasError
+      ? alert("ERROR!!! " + JSON.stringify(errors))
+      : alert("SUCCESS!!! " + JSON.stringify(values));
+    clear();
+  };
+
   return (
     <div>
       <h1>Custom Hook Form</h1>
-      <form>
-      <InputGroup
+      <form onSubmit={(event) => handleSubmit(event, cb)}>
+        <InputGroup
           value={state.firstName.value}
           error={state.firstName.error}
           label="Enter First Name"
@@ -81,6 +90,12 @@ const App = () => {
           onFocus={handleFocus}
           placeholder="*******"
         />
+        <Button type="submit">Submit</Button>
+        <br />
+        <br />
+        <Button type="reset" onClick={clear}>
+          Clear
+        </Button>
       </form>
     </div>
   );
