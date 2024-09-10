@@ -3,6 +3,8 @@ import useForm from "../../hooks/useForm";
 const init = {
   text: "",
   checked: false,
+  group: "",
+  priority: "medium",
 };
 
 const submitCb = ({ values }) => {
@@ -30,6 +32,35 @@ const Task = () => {
           value={formState.text.value}
           onChange={handleChange}
         />
+        <select
+          name="group"
+          value={formState.group.value}
+          onChange={handleChange}
+        >
+          <option value="Home">HOME</option>
+          <option value="Office">OFFICE</option>
+        </select>
+        <input
+          type="radio"
+          name="priority"
+          value="low"
+          onChange={handleChange}
+        />
+        LOW
+        <input
+          type="radio"
+          name="priority"
+          value="medium"
+          onChange={handleChange}
+        />
+        MEDIUM
+        <input
+          type="radio"
+          name="priority"
+          value="high"
+          onChange={handleChange}
+        />
+        HIGH
         <button>Create</button>
       </form>
     </div>
