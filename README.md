@@ -1,8 +1,45 @@
-# React + Vite
+# useForm Custom Hook
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a customHook created for the purpose of using it to create dynamic forms.
 
-Currently, two official plugins are available:
+## usage
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The useHook custom hook can be used by importing it and then calling it with a initial state that will be an object init containing all the fields for the form and a function or boolean value as validate. While calling it will return the `formState` variable and function for `handleChange, handleFocus, handleBlur,handleSubmit` and clear.
+
+Example:
+
+```javascript
+const {
+    formState: state,
+    handleBlur,
+    handleChange,
+    handleFocus,
+    handleSubmit,
+    clear,
+    } = useForm({
+        {
+            lastName: "",
+            firstName: "",
+            email: "",
+            password: "",
+            },
+            (values) => {
+  const errors = {};
+  if (!values.lastName) {
+    errors.lastName = "Last name is required";
+  }
+  if (!values.firstName) {
+    errors.firstName = "First name is required";
+  }
+  if (!values.email) {
+    errors.email = "email is required";
+  }
+  if (!values.password) {
+    errors.password = "password is required";
+  }
+  return errors;
+};,
+        });
+```
+
+After declaring and getting all the functions and state, these can be used to create functionality for a form.
