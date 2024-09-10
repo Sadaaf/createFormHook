@@ -1,6 +1,7 @@
 import useForm from "../hooks/useForm";
 import InputGroup from "../components/shared/forms/InputGroup";
 import Button from "../components/ui/buttons/Button";
+import Task from "../components/task/Task";
 
 const init = {
   lastName: "",
@@ -97,6 +98,8 @@ const App = () => {
           Clear
         </Button>
       </form>
+      <hr />
+      <Task />
     </div>
   );
 };

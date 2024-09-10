@@ -14,10 +14,11 @@ const useForm = ({ init, validate }) => {
   const [state, setState] = useState(mapValuesToState(init));
 
   const handleChange = (event) => {
-    const { name: key, value } = event.target;
-
+    const { name: key, value, type, checked } = event.target;
     const oldState = deepCopy(state);
-    oldState[key].value = value;
+
+    oldState[key].value = type === 'checkbox' ? checked : value;
+
     const { errors } = getErrors();
     if (oldState[key].touched && errors[key]) {
       oldState[key].error = errors[key];
@@ -63,7 +64,6 @@ const useForm = ({ init, validate }) => {
       touched: mapStateToKeys(state, "touched"),
       focused: mapStateToKeys(state, "touched"),
     });
-    
   };
 
   const clear = () => {
@@ -86,7 +86,6 @@ const useForm = ({ init, validate }) => {
     } else {
       throw new Error("validate property must be boolean or function");
     }
-    console.log(errors)
     return {
       errors,
       hasError,
